@@ -1,4 +1,3 @@
----
 name: Yaml Lint
 on: [push]
 jobs:
@@ -11,8 +10,8 @@ jobs:
       - name: Install dependencies
         id: installdependencies
         run: |
-          apt update
-          apt install -y yamllint
+          sudo apt update
+          sudo apt install -y yamllint
       - name: run yamllint
         id: yamllint
         uses: ibiqlik/action-yamllint@v3.1.1
