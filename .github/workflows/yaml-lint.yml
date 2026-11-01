@@ -11,8 +11,8 @@ jobs:
       - name: Install dependencies
         id: installdependencies
         run: |
-          apt-get update
-          apt-get install -y yamllint
+          apt update
+          apt install -y yamllint
       - name: run yamllint
         id: yamllint
         uses: ibiqlik/action-yamllint@v3.1.1
