@@ -1,0 +1,26 @@
+---
+name: Yaml Lint
+on: [push]
+jobs:
+  yamllint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        id: checkout-repository
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        id: installdependencies
+        run: |
+          apt-get update
+          apt-get install -y yamllint
+      - name: run yamllint
+        id: yamllint
+        uses: ibiqlik/action-yamllint@v3.1.1
+        with:
+          file_or_dir: .github/workflows
+      - run: echo ${{ steps.yamllint.outputs.logfile }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: yamllint-logfile
+          path: ${{ steps.yamllint.outputs.logfile }}
